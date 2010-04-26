@@ -1,6 +1,6 @@
 Name:           kffmpegthumbnailer
 Version:        1.1.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A video thumbnailer for kde based on ffmpegthumbnailer
 
 Group:          Applications/Multimedia
@@ -9,7 +9,7 @@ URL:            http://code.google.com/p/ffmpegthumbnailer/
 Source0:        http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  ffmpegthumbnailer-devel
+BuildRequires:  ffmpegthumbnailer-devel, qt-devel
 Requires:       kdebase-workspace
 
 
@@ -49,6 +49,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_kde4_libdir}/kde4/kffmpegthumbnailer.so
 
 %changelog
+* Mon Apr 26 2010 Magnus Tuominen <magnus.tuominen@gmail.com> - 1.1.0-3
+- add requires qt-devel
+
 * Mon Apr 12 2010 Magnus Tuominen <magnus.tuominen@gmail.com> - 1.1.0-2
 - requires kdebase-workspace
 - remove INSTALL from doc
