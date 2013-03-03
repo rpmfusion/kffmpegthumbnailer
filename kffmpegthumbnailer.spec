@@ -1,6 +1,6 @@
 Name:           kffmpegthumbnailer
 Version:        1.1.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        A video thumbnailer for kde based on ffmpegthumbnailer
 
 Group:          Applications/Multimedia
@@ -49,6 +49,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_kde4_libdir}/kde4/kffmpegthumbnailer.so
 
 %changelog
+* Sun Mar 03 2013 Nicolas Chauvet <kwizart@gmail.com> - 1.1.0-7
+- Mass rebuilt for Fedora 19 Features
+
 * Fri Mar 02 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.1.0-6
 - Rebuilt for c++ ABI breakage
 
