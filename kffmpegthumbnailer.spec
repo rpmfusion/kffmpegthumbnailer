@@ -1,6 +1,6 @@
 Name:           kffmpegthumbnailer
 Version:        1.1.0
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        A video thumbnailer for kde based on ffmpegthumbnailer
 
 Group:          Applications/Multimedia
@@ -10,7 +10,6 @@ Source0:        http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  ffmpegthumbnailer-devel, kdelibs-devel
-Requires:       kdebase-workspace
 
 
 %{?_kde4_macros_api:Requires: kde4-macros(api) = %{_kde4_macros_api} }
@@ -49,6 +48,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_kde4_libdir}/kde4/kffmpegthumbnailer.so
 
 %changelog
+* Tue Aug 02 2016 Leigh Scott <leigh123linux@googlemail.com> - 1.1.0-9
+- remove requires kdebase-workspace (rfbz 3719)
+
 * Sun Aug 31 2014 Sérgio Basto <sergio@serjux.com> - 1.1.0-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
