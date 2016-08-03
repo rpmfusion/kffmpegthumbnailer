@@ -1,0 +1,11 @@
+Add -std=c++11 like in ffmpegthumbnailer-2.1.1/CMakeLists.txt line 31
+--- kffmpegthumbnailer/CMakeLists.txt.orig	2016-08-03 04:54:49.283498739 +0100
++++ kffmpegthumbnailer/CMakeLists.txt	2016-08-03 04:56:11.369554153 +0100
+@@ -29,6 +29,7 @@ pkg_check_modules(FFMPEG_THUMBNAILER lib
+ include_directories( ${KDE4_INCLUDES} ${QT_INCLUDES} ${AVUTIL_INCLUDES} ${AVFORMAT_INCLUDES} ${AVCODEC_INCLUDES} ${SWSCALE_INCLUDES} ${FFMPEG_THUMBNAILER_INCLUDES})
+ 
+ set(kffmpegthumbnailer_SRCS kffmpegthumbnailer.cpp)
++SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+ string(REGEX REPLACE "-fno-exceptions " "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+ 
+ kde4_add_plugin(kffmpegthumbnailer ${kffmpegthumbnailer_SRCS})

@@ -1,15 +1,15 @@
 Name:           kffmpegthumbnailer
 Version:        1.1.0
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        A video thumbnailer for kde based on ffmpegthumbnailer
 
 Group:          Applications/Multimedia
 License:        GPLv2+
 URL:            http://code.google.com/p/ffmpegthumbnailer/
 Source0:        http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Patch0:         kffmpegthumbnailer-c++11.patch
 
-BuildRequires:  ffmpegthumbnailer-devel, kdelibs-devel
+BuildRequires:  ffmpegthumbnailer-devel kdelibs-devel
 
 
 %{?_kde4_macros_api:Requires: kde4-macros(api) = %{_kde4_macros_api} }
@@ -21,6 +21,7 @@ The thumbnailer uses ffmpeg to decode frames from the video files.
 
 %prep
 %setup -q
+%patch0 -p1
 chmod -x INSTALL
 
 %build
@@ -33,21 +34,21 @@ make %{?_smp_mflags} -C %{_target_platform}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
 make install/fast DESTDIR=$RPM_BUILD_ROOT -C %{_target_platform}
 
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
 %files
-%defattr(-,root,root,-)
-%doc COPYRIGHT README Changelog
+%doc README Changelog
+%license COPYRIGHT
 %{_kde4_datadir}/kde4/services/kffmpegthumbnailer.desktop
 %{_kde4_libdir}/kde4/kffmpegthumbnailer.so
 
 %changelog
+* Wed Aug 03 2016 Sérgio Basto <sergio@serjux.com> - 1.1.0-10
+- Fix build on F23
+- Add license tag
+- Spec quick clean up
+
 * Tue Aug 02 2016 Leigh Scott <leigh123linux@googlemail.com> - 1.1.0-9
 - remove requires kdebase-workspace (rfbz 3719)
 
