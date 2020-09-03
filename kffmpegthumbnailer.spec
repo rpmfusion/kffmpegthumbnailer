@@ -12,6 +12,7 @@ URL:            https://github.com/dirkvdb/ffmpegthumbnailer
 Source0:        %{url}/archive/%{ff_version}/ffmpegthumbnailer-%{ff_version}.tar.gz
 
 BuildRequires:  ffmpegthumbnailer-devel
+BuildRequires:  ffmpeg-devel
 BuildRequires:  kdelibs-devel
 
 
