@@ -1,15 +1,18 @@
+%undefine __cmake_in_source_build
+%global ff_version 2.2.2
+
 Name:           kffmpegthumbnailer
 Version:        1.1.0
-Release:        18%{?dist}
+Release:        19%{?dist}
 Summary:        A video thumbnailer for kde based on ffmpegthumbnailer
 
 Group:          Applications/Multimedia
 License:        GPLv2+
-URL:            http://code.google.com/p/ffmpegthumbnailer/
-Source0:        http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.gz
-Patch0:         kffmpegthumbnailer-c++11.patch
+URL:            https://github.com/dirkvdb/ffmpegthumbnailer
+Source0:        %{url}/archive/%{ff_version}/ffmpegthumbnailer-%{ff_version}.tar.gz
 
-BuildRequires:  ffmpegthumbnailer-devel kdelibs-devel
+BuildRequires:  ffmpegthumbnailer-devel
+BuildRequires:  kdelibs-devel
 
 
 %{?_kde4_macros_api:Requires: kde4-macros(api) = %{_kde4_macros_api} }
@@ -20,30 +23,33 @@ The thumbnailer uses ffmpeg to decode frames from the video files.
 
 
 %prep
-%setup -q
-%patch0 -p1
+%autosetup -p1 -n ffmpegthumbnailer-%{ff_version}
 chmod -x INSTALL
 
 %build
-mkdir -p %{_target_platform}
-pushd %{_target_platform}
-%{cmake_kde4} ..
-popd
-
-make %{?_smp_mflags} -C %{_target_platform}
+cd %{name}
+%{cmake_kde4} \
+ -Wno-dev \
+ -B %{_vpath_builddir} \
+ -S .
+%cmake_build
 
 
 %install
-make install/fast DESTDIR=$RPM_BUILD_ROOT -C %{_target_platform}
+cd %{name}
+%cmake_install
 
 
 %files
-%doc README Changelog
-%license COPYRIGHT
+%doc kffmpegthumbnailer/README kffmpegthumbnailer/Changelog
+%license kffmpegthumbnailer/COPYRIGHT
 %{_kde4_datadir}/kde4/services/kffmpegthumbnailer.desktop
 %{_kde4_libdir}/kde4/kffmpegthumbnailer.so
 
 %changelog
+* Thu Sep 03 2020 Leigh Scott <leigh123linux@gmail.com> - 1.1.0-19
+- Switch to maintained source
+
 * Tue Aug 18 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.1.0-18
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
