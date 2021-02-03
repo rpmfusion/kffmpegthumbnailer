@@ -3,7 +3,7 @@
 
 Name:           kffmpegthumbnailer
 Version:        1.1.0
-Release:        19%{?dist}
+Release:        20%{?dist}
 Summary:        A video thumbnailer for kde based on ffmpegthumbnailer
 
 Group:          Applications/Multimedia
@@ -48,6 +48,9 @@ cd %{name}
 %{_kde4_libdir}/kde4/kffmpegthumbnailer.so
 
 %changelog
+* Wed Feb 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.1.0-20
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Thu Sep 03 2020 Leigh Scott <leigh123linux@gmail.com> - 1.1.0-19
 - Switch to maintained source
 
